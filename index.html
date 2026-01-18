@@ -1,53 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Game Koin</title>
+<title>Game Tebak Angka</title>
 <style>
-body{
-  margin:0;
-  font-family: Arial;
-  background: linear-gradient(135deg,#1f3c88,#3a7bd5);
-  color:white;
-  text-align:center;
-}
-
-.header{
-  padding:40px 20px;
-}
-
-.saldo{
-  background:rgba(255,255,255,0.2);
-  margin:20px;
-  padding:15px;
-  border-radius:12px;
-  font-size:18px;
-}
-
-button{
-  padding:15px 40px;
-  font-size:18px;
-  border:none;
-  border-radius:25px;
-  background:#ffcc00;
-  color:#333;
-  margin-top:20px;
-}
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#1e3c72,#2a5298);
+    color: white;
+    text-align: center;
+    padding-top: 40px;
+  }
+  .box {
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    margin: 20px;
+    border-radius: 15px;
+  }
+  button {
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    background: gold;
+    cursor: pointer;
+  }
+  input {
+    padding: 10px;
+    font-size: 18px;
+    width: 100px;
+    text-align: center;
+  }
+  .iklan {
+    background: #111;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 10px;
+    color: #0f0;
+  }
 </style>
 </head>
 
 <body>
 
-<div class="header">
-  <h1>Game Penghasil Koin</h1>
-  <p>Main santai, kumpulkan koin</p>
+<h1>🎮 Game Tebak Angka</h1>
+<p>Level: <span id="level">1</span> / 100</p>
+
+<div class="box" id="menu">
+  <button onclick="mulaiGame()">MULAI</button>
 </div>
 
-<div class="saldo">
-  💰 Saldo: <span id="koin">0</span> Koin
+<div class="box" id="game" style="display:none;">
+  <h2 id="soal"></h2>
+  <input type="number" id="jawaban">
+  <br><br>
+  <button onclick="cekJawaban()">JAWAB</button>
 </div>
 
-<button onclick="window.location.href='game.html'">MULAI</button>
+<div class="box iklan" id="iklan" style="display:none;">
+  📢 IKLAN<br>
+  <small>Contoh iklan tampil setiap naik level</small><br><br>
+  <button onclick="tutupIklan()">LANJUT</button>
+</div>
+
+<script>
+let level = localStorage.getItem("level") || 1;
+level = parseInt(level);
+let a = 0;
+let b = 0;
+
+document.getElementById("level").innerText = level;
+
+function mulaiGame(){
+  document.getElementById("menu").style.display = "none";
+  document.getElementById("game").style.display = "block";
+  buatSoal();
+}
+
+function buatSoal(){
+  a = Math.floor(Math.random()*10) + 1;
+  b = Math.floor(Math.random()*10) + 1;
+  document.getElementById("soal").innerText = a + " + " + b + " = ?";
+  document.getElementById("jawaban").value = "";
+}
+
+function cekJawaban(){
+  let jawab = parseInt(document.getElementById("jawaban").value);
+  if(jawab === a + b){
+    level++;
+    if(level > 100){
+      alert("🎉 Selamat! Kamu menyelesaikan semua level!");
+      level = 100;
+    }
+    localStorage.setItem("level", level);
+    document.getElementById("level").innerText = level;
+    document.getElementById("game").style.display = "none";
+    document.getElementById("iklan").style.display = "block";
+  } else {
+    alert("❌ Salah, coba lagi!");
+  }
+}
+
+function tutupIklan(){
+  document.getElementById("iklan").style.display = "none";
+  document.getElementById("game").style.display = "block";
+  buatSoal();
+}
+</script>
 
 </body>
 </html>
