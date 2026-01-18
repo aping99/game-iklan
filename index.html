@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Game Koin</title>
+<style>
+body{
+  margin:0;
+  font-family: Arial;
+  background: linear-gradient(135deg,#1f3c88,#3a7bd5);
+  color:white;
+  text-align:center;
+}
+
+.header{
+  padding:40px 20px;
+}
+
+.saldo{
+  background:rgba(255,255,255,0.2);
+  margin:20px;
+  padding:15px;
+  border-radius:12px;
+  font-size:18px;
+}
+
+button{
+  padding:15px 40px;
+  font-size:18px;
+  border:none;
+  border-radius:25px;
+  background:#ffcc00;
+  color:#333;
+  margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>Game Penghasil Koin</h1>
+  <p>Main santai, kumpulkan koin</p>
+</div>
+
+<div class="saldo">
+  💰 Saldo: <span id="koin">0</span> Koin
+</div>
+
+<button onclick="window.location.href='game.html'">MULAI</button>
+
+</body>
+</html>
