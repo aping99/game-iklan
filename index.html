@@ -1,168 +1,25 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tap Pecahin Batu</title>
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #111;
-  color: #fff;
-  text-align: center;
-}
-#topbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: #222;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 14px;
-}
-#game {
-  margin-top: 80px;
-}
-#stone {
-  width: 150px;
-  height: 150px;
-  background: gray;
-  margin: 20px auto;
-  border-radius: 10px;
-  line-height: 150px;
-  font-size: 20px;
-  cursor: pointer;
-  user-select: none;
-}
-#stone:active {
-  transform: scale(0.95);
-}
-button {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  margin-top: 10px;
-}
-#ad {
-  margin: 20px;
-  padding: 15px;
-  background: #333;
-}
-#withdrawBox {
-  display: none;
-  background: #222;
-  padding: 15px;
-  margin: 20px;
-}
-input, select {
-  width: 90%;
-  padding: 8px;
-  margin: 5px 0;
-}
-</style>
+  <meta charset="UTF-8">
+  <title>Skybound Season</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      overflow: hidden;
+    }
+    canvas {
+      display: block;
+      image-rendering: pixelated;
+    }
+  </style>
 </head>
 <body>
 
-<div id="topbar">
-  <div>💰 Uang: <span id="money">0</span></div>
-  <div>Level: <span id="level">1</span>/500</div>
-</div>
+<canvas id="game"></canvas>
 
-<div id="game">
-  <div id="stone">🪨 HP: <span id="hp"></span></div>
-  <button onclick="openWithdraw()">Tarik Uang</button>
-</div>
-
-<div id="ad">
-  <!-- IKLAN TULISAN (DEMO) -->
-  <div id="adText" style="display:none;">
-    📢 IKLAN TAYANG
-  </div>
-</div>
-
-<div id="withdrawBox">
-  <h3>Penarikan Dana</h3>
-  <p>Minimal tarik: 50.000</p>
-
-  <select id="method">
-    <option>OVO</option>
-    <option>GoPay</option>
-  </select>
-
-  <input type="text" id="name" placeholder="Nama Lengkap">
-  <input type="text" id="number" placeholder="Nomor OVO / GoPay">
-
-  <button onclick="submitWithdraw()">Kirim Penarikan</button>
-</div>
-
-<script>
-let level = 1;
-let money = 0;
-let hp = 1;
-
-function newLevel() {
-  if (level > 500) {
-    alert("Semua level selesai!");
-    return;
-  }
-
-  hp = Math.floor(Math.random() * 3) + 1;
-
-  document.getElementById("hp").innerText = hp;
-  document.getElementById("level").innerText = level;
-
-  document.getElementById("adText").style.display =
-    level % 5 === 0 ? "block" : "none";
-}
-
-document.getElementById("stone").onclick = function () {
-  if (hp <= 0) return;
-
-  hp--;
-  document.getElementById("hp").innerText = hp;
-
-  if (hp === 0) {
-    money += 1000;
-    document.getElementById("money").innerText = money;
-    level++;
-    setTimeout(newLevel, 300);
-  }
-};
-
-function openWithdraw() {
-  document.getElementById("withdrawBox").style.display = "block";
-}
-
-function submitWithdraw() {
-  if (money < 50000) {
-    alert("Uang belum cukup untuk penarikan");
-    return;
-  }
-
-  const name = document.getElementById("name").value;
-  const number = document.getElementById("number").value;
-
-  if (!name || !number) {
-    alert("Lengkapi data penarikan");
-    return;
-  }
-
-  alert(
-    "Penarikan berhasil diajukan!\n" +
-    "Proses 3–5 hari kerja."
-  );
-
-  document.getElementById("withdrawBox").style.display = "none";
-}
-
-newLevel();
-</script>
-
-<!-- 🔥 IKLAN ADSTERRA SOCIAL BAR -->
-<script type="text/javascript" src="https://pl28521278.effectivegatecpm.com/e4/06/85/e40685b90272d3d580b28c76d9a3a7d3.js"></script>
-
+<script src="game.js"></script>
 </body>
 </html>

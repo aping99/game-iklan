@@ -1,0 +1,110 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #000;
+  touch-action: none;
+}
+
+canvas {
+  display: block;
+  image-rendering: pixelated;
+}
+
+/* UI */
+#ui {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  font-family: monospace;
+  font-size: 13px;
+  color: white;
+  background: rgba(0,0,0,0.6);
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+#staminaWrap {
+  width: 100px;
+  height: 6px;
+  background: #333;
+  margin-top: 4px;
+}
+
+#staminaBar {
+  height: 100%;
+  background: lime;
+  width: 100%;
+}
+
+/* Dialog */
+#dialog {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.7);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-family: monospace;
+}
+
+.hidden { display: none; }
+
+/* Investor UI */
+#investorUI {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  background: rgba(0,0,0,0.85);
+  color: white;
+  font-family: monospace;
+  padding: 14px;
+  border-radius: 8px;
+  width: 200px;
+}
+
+#investorUI label {
+  display: block;
+  margin-top: 6px;
+}
+
+#investorUI select,
+#investorUI input,
+#investorUI button {
+  width: 100%;
+  margin-top: 4px;
+}
+
+/* JOYSTICK */
+#joystick {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 100px;
+  height: 100px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+}
+
+#stick {
+  position: absolute;
+  left: 35px;
+  top: 35px;
+  width: 30px;
+  height: 30px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 50%;
+}
+
+/* INTERACT */
+#interactBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 20px;
+}
